@@ -1,6 +1,6 @@
 {
   "name": "foley",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -8,6 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
+    "changelog": "npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -24,6 +25,7 @@
     "@commitlint/config-conventional": "^15.0.0",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.64.12",
+    "conventional-changelog-cli": "^2.1.1",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^7.0.0",
     "typescript": "~4.3.5"
