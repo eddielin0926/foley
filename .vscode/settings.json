@@ -1,7 +1,10 @@
 {
     "cSpell.words": [
         "commitlint",
+        "entypo",
         "flowtype",
+        "ionicon",
         "Parens"
-    ]
+    ],
+    "editor.tabSize": 2
 }
