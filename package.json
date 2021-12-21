@@ -8,6 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
+    "release": "npx standard-version",
     "prettier": "prettier 'src/**/*.tsx' App.tsx",
     "lint": "eslint .",
     "changelog": "npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
