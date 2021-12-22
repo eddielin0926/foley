@@ -9,7 +9,8 @@ import {
   Avatar,
 } from "react-native-elements";
 import { StackParams } from "../../App";
-import StatusBadge from '~/components/StatusBadge'
+import StatusBadge from "~/components/StatusBadge";
+import PatientModel from '~/type/PatientModel'
 import common from "~/styles/common";
 import theme from "~/styles/theme";
 
@@ -18,20 +19,39 @@ type Props = NativeStackScreenProps<StackParams, "HomeScreen">;
 const HomeScreen = ({ navigation }: Props) => {
   const [open, setOpen] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [patients, setPatients] = useState([
+  const [patients, setPatients] = useState<Array<PatientModel>>([
     {
       id: 0,
-      name: "Amy Farha",
-      avatar_url: "https://source.unsplash.com/600x600/?female",
-      subtitle: "Vice President",
-      status: "inserted" as const,
+      name: "小美",
+      gender: "female",
+      bed: "A380",
+      case: "I-DONT-KNOW",
+      age: 70,
+      day: 5,
+      foleyStatus: "removed",
+      state: "1A"
     },
     {
       id: 1,
-      name: "Chris Jackson",
-      avatar_url: "https://source.unsplash.com/600x600/?male",
-      subtitle: "Vice Chairman",
-      status: "none" as const,
+      name: "阿明",
+      gender: "other",
+      bed: "C8763",
+      case: "STARBURST-STREAM",
+      age: 16,
+      day: 1,
+      foleyStatus: "inserted",
+      state: "1A"
+    },
+    {
+      id: 2,
+      name: "昊哥",
+      gender: "male",
+      bed: "H168",
+      case: "HOW-FUN",
+      age: 32,
+      day: 9,
+      foleyStatus: "none",
+      state: "1A"
     },
   ]);
 
@@ -49,12 +69,12 @@ const HomeScreen = ({ navigation }: Props) => {
                   onPress={() => navigation.navigate("InfoScreen")}
                   containerStyle={{ borderRadius: 15, overflow: "hidden" }}
                 >
-                  <Avatar rounded source={{ uri: item.avatar_url }} />
+                  <Avatar rounded source={{ uri: `https://source.unsplash.com/600x600/?${item.gender}` }} />
                   <ListItem.Content>
                     <ListItem.Title>{item.name}</ListItem.Title>
-                    <ListItem.Subtitle>{item.subtitle}</ListItem.Subtitle>
+                    <ListItem.Subtitle>{`床號: ${item.bed}`}</ListItem.Subtitle>
                   </ListItem.Content>
-                  <StatusBadge foley={item.status} />
+                  <StatusBadge foley={item.foleyStatus} />
                 </ListItem>
               )}
             />
