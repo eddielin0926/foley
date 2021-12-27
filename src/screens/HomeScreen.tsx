@@ -60,7 +60,10 @@ const HomeScreen = ({ navigation }: Props) => {
             <SpeedDial.Action
               icon={{ name: "add", color: "#fff" }}
               title="Add"
-              onPress={() => navigation.navigate("AddScreen")}
+              onPress={() => {
+                setOpen(!open);
+                navigation.navigate("AddScreen");
+              }}
             />
             <SpeedDial.Action
               icon={{ name: "delete", color: "#fff" }}

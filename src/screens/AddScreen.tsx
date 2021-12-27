@@ -40,7 +40,7 @@ const AddScreen = ({ navigation }: Props) => {
           />
         </View>
         <View style={{ padding: 40 }}>
-          <Button title="確認" onPress={() => navigation.navigate("HomeScreen")} />
+          <Button title="尿管狀態" onPress={() => navigation.navigate("ProcessScreen")} />
         </View>
       </View>
     </ThemeProvider>
