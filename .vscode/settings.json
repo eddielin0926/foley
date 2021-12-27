@@ -3,8 +3,10 @@
         "commitlint",
         "entypo",
         "flowtype",
+        "Immer",
         "ionicon",
-        "Parens"
+        "Parens",
+        "reduxjs"
     ],
     "editor.tabSize": 2
 }

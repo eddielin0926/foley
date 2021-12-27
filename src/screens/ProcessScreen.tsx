@@ -1,11 +1,39 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, { useState } from "react";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { StackParams } from "../../App";
+import { View } from "react-native";
 import common from "~/styles/common";
+import IndicationsPanel from "~/panels/IndicationsPanel";
+import AlternativePanel from "~/panels/AlternativePanel";
+import TechniquePanel from "~/panels/TechniquePanel";
+import EvaluatePanel from "~/panels/EvaluatePanel";
+import CarePanel from "~/panels/CarePanel";
+import { Button } from "react-native-elements";
 
-const ProcessScreen = () => {
+type Props = NativeStackScreenProps<StackParams, "HomeScreen">;
+
+const ProcessScreen = ({ navigation }: Props) => {
+  const [state, setState] = useState(1);
+  const panels = [
+    <EvaluatePanel />,
+    <IndicationsPanel />,
+    <AlternativePanel />,
+    <TechniquePanel />,
+    <CarePanel />,
+  ];
   return (
     <View style={common.container}>
-      <Text>Process Screen</Text>
+      {panels[state]}
+      <View style={{padding: 20, marginBottom: 20}}>
+        <Button
+          title="確認"
+          // disabled={true}
+          onPress={() => {
+            if (state !== panels.length - 1) setState(state + 1);
+            else navigation.navigate("HomeScreen");
+          }}
+        />
+      </View>
     </View>
   );
 };
