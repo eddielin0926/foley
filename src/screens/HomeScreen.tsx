@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FlatList, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import DropDownPicker from "react-native-dropdown-picker";
 import {
   SpeedDial,
   ThemeProvider,
@@ -21,14 +22,32 @@ const HomeScreen = ({ navigation }: Props) => {
   const patients = useSelector((state: RootState) => state.hospital.patients);
   const [open, setOpen] = useState(false);
 
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [value, setValue] = useState("all");
+  const [items, setItems] = useState([
+    { label: "無放置過尿管", value: "none" },
+    { label: "尿管放置中", value: "inserted" },
+    { label: "已移除尿管", value: "removed" },
+    { label: "全部", value: "all" },
+  ]);
+
   return (
     <ThemeProvider theme={theme}>
       <View style={common.screen}>
         <View style={common.container}>
           <Text h2>病患</Text>
+          <DropDownPicker
+            modalTitle="Filter"
+            open={filterOpen}
+            value={value}
+            items={items}
+            setOpen={setFilterOpen}
+            setValue={callback => setValue(callback as any)}
+            setItems={setItems}
+          />
           <View style={{ flex: 1 }}>
             <FlatList
-              data={patients}
+              data={patients.filter((item) => value === "all" ? true : item.foleyStatus === value)}
               renderItem={({ item }) => (
                 <ListItem
                   bottomDivider
