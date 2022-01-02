@@ -10,7 +10,7 @@ import EvaluatePanel from "~/panels/EvaluatePanel";
 import CarePanel from "~/panels/CarePanel";
 import { Button } from "react-native-elements";
 
-type Props = NativeStackScreenProps<StackParams, "HomeScreen">;
+type Props = NativeStackScreenProps<StackParams, "ProcessScreen">;
 
 const ProcessScreen = ({ navigation }: Props) => {
   const [state, setState] = useState(1);

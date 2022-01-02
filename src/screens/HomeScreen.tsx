@@ -20,11 +20,11 @@ type Props = NativeStackScreenProps<StackParams, "HomeScreen">;
 
 const HomeScreen = ({ navigation }: Props) => {
   const patients = useSelector((state: RootState) => state.hospital.patients);
-  const [open, setOpen] = useState(false);
 
+  const [open, setOpen] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
-  const [value, setValue] = useState("all");
-  const [items, setItems] = useState([
+  const [filterValue, setFilterValue] = useState("all");
+  const [filterItems, setFilterItems] = useState([
     { label: "無放置過尿管", value: "none" },
     { label: "尿管放置中", value: "inserted" },
     { label: "已移除尿管", value: "removed" },
@@ -39,19 +39,21 @@ const HomeScreen = ({ navigation }: Props) => {
           <DropDownPicker
             modalTitle="Filter"
             open={filterOpen}
-            value={value}
-            items={items}
+            value={filterValue}
+            items={filterItems}
             setOpen={setFilterOpen}
-            setValue={callback => setValue(callback as any)}
-            setItems={setItems}
+            setValue={(callback) => setFilterValue(callback as any)}
+            setItems={setFilterItems}
           />
           <View style={{ flex: 1 }}>
             <FlatList
-              data={patients.filter((item) => value === "all" ? true : item.foleyStatus === value)}
+              data={patients.filter((item) =>
+                filterValue === "all" ? true : item.foleyStatus === filterValue
+              )}
               renderItem={({ item }) => (
                 <ListItem
                   bottomDivider
-                  onPress={() => navigation.navigate("InfoScreen")}
+                  onPress={() => navigation.navigate("InfoScreen", {id: item.id})}
                   containerStyle={{ borderRadius: 15, overflow: "hidden" }}
                 >
                   <Avatar

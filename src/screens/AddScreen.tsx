@@ -6,7 +6,7 @@ import { StackParams } from "../../App";
 import common from "~/styles/common";
 import theme from "~/styles/theme";
 
-type Props = NativeStackScreenProps<StackParams, "HomeScreen">;
+type Props = NativeStackScreenProps<StackParams, "AddScreen">;
 
 const AddScreen = ({ navigation }: Props) => {
   return (

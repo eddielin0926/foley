@@ -13,7 +13,7 @@ export type StackParams = {
   HomeScreen: undefined;
   ProcessScreen: undefined;
   AddScreen: undefined;
-  InfoScreen: undefined;
+  InfoScreen: { id: number };
 };
 
 const Stack = createNativeStackNavigator<StackParams>();
