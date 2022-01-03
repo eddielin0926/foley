@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { FlatList } from "react-native";
 import { CheckBox, Text } from "react-native-elements";
 
-const EvaluatePanel = () => {
+interface Props {
+  setStatus: (status: string) => void;
+}
+
+const EvaluatePanel = ({ setStatus }: Props) => {
   const [selection, setSelection] = useState<Array<boolean>>([
     false,
     false,

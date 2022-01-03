@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { FlatList } from "react-native";
 import { CheckBox, Text } from "react-native-elements";
 
-const CarePanel = () => {
+interface Props {
+  setStatus: (status: string) => void;
+}
+
+const CarePanel = ({ setStatus }: Props) => {
   const [selection, setSelection] = useState<Array<boolean>>([false, false]);
   const options: Array<{ key: string; brief: string; detail: string }> = [
     {

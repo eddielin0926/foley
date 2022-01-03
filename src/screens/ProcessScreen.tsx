@@ -8,34 +8,35 @@ import AlternativePanel from "~/panels/AlternativePanel";
 import TechniquePanel from "~/panels/TechniquePanel";
 import EvaluatePanel from "~/panels/EvaluatePanel";
 import CarePanel from "~/panels/CarePanel";
-import { Button } from "react-native-elements";
 
 type Props = NativeStackScreenProps<StackParams, "ProcessScreen">;
 
 const ProcessScreen = ({ navigation }: Props) => {
-  const [state, setState] = useState(1);
+  const [panel, setPanel] = useState(0);
+
+  const setStatus = (status: string) => {
+    if (status[0] === "A") {
+      if (status === "A-9") {
+        setPanel(1);
+      } else {
+        setPanel(2);
+      }
+    } else if (status[0] === "B") {
+      navigation.navigate("HomeScreen");
+    } else if (status[0] === "C") {
+      navigation.navigate("HomeScreen");
+    }
+  };
+
   const panels = [
-    <EvaluatePanel />,
-    <IndicationsPanel />,
-    <AlternativePanel />,
-    <TechniquePanel />,
-    <CarePanel />,
+    <IndicationsPanel setStatus={setStatus} />,
+    <AlternativePanel setStatus={setStatus} />,
+    <TechniquePanel setStatus={setStatus} />,
+    <EvaluatePanel setStatus={setStatus}  />,
+    <CarePanel setStatus={setStatus}  />,
   ];
-  return (
-    <View style={common.container}>
-      {panels[state]}
-      <View style={{padding: 20, marginBottom: 20}}>
-        <Button
-          title="確認"
-          // disabled={true}
-          onPress={() => {
-            if (state !== panels.length - 1) setState(state + 1);
-            else navigation.navigate("HomeScreen");
-          }}
-        />
-      </View>
-    </View>
-  );
+
+  return <View style={common.container}>{panels[panel]}</View>;
 };
 
 export default ProcessScreen;

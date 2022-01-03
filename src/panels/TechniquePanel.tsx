@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import { FlatList } from "react-native";
-import { CheckBox, Text } from "react-native-elements";
+import { FlatList, View } from "react-native";
+import { Button, CheckBox, Text } from "react-native-elements";
 
-const TechniquePanel = () => {
+interface Props {
+  setStatus: (status: string) => void;
+}
+
+const TechniquePanel = ({ setStatus }: Props) => {
   const [selection, setSelection] = useState<Array<boolean>>([
     false,
     false,
@@ -89,6 +93,13 @@ const TechniquePanel = () => {
           />
         )}
       />
+      <View style={{ padding: 20, marginBottom: 20 }}>
+        <Button
+          title="確認"
+          disabled={selection.includes(false)}
+          onPress={() => setStatus("C")}
+        />
+      </View>
     </>
   );
 };

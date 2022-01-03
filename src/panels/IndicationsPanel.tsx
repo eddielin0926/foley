@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import { FlatList } from "react-native";
-import { CheckBox, Text } from "react-native-elements";
+import { FlatList, View } from "react-native";
+import { Button, CheckBox, Text } from "react-native-elements";
 
-const IndicationsPanel = () => {
-  const [selection, setSelection] = useState<string>("B-1");
+interface Props {
+  setStatus: (status: string) => void;
+}
+
+const IndicationsPanel = ({ setStatus }: Props) => {
+  const [selection, setSelection] = useState<string>("");
   const options: Array<{ key: string; brief: string; detail: string }> = [
     {
       key: "A-1",
@@ -71,6 +75,13 @@ const IndicationsPanel = () => {
           />
         )}
       />
+      <View style={{ padding: 20, marginBottom: 20 }}>
+        <Button
+          title="確認"
+          disabled={selection === ""}
+          onPress={() => setStatus(selection)}
+        />
+      </View>
     </>
   );
 };
