@@ -13,5 +13,15 @@ export default StyleSheet.create({
   },
   screen: {
     flex: 1,
+  },
+  row:{
+    flexDirection:'row',
+    marginBottom: 10
+  },
+  line:{
+    padding: 5,
+    borderBottomWidth:3,
+    borderBottomColor:'black',
+    marginBottom:10
   }
 });
