@@ -52,6 +52,7 @@ export const hospitalSlice = createSlice({
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
+      action.payload.id = state.patients.length;
       state.patients.push(action.payload);
     },
     update: (state, action: PayloadAction<PatientModel>) => {

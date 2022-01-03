@@ -8,10 +8,11 @@ import AddScreen from "~/screens/AddScreen";
 import InfoScreen from "~/screens/InfoScreen";
 import { store } from "~/redux/store";
 import { Provider } from "react-redux";
+import PatientModel from "~/type/PatientModel";
 
 export type StackParams = {
   HomeScreen: undefined;
-  ProcessScreen: undefined;
+  ProcessScreen:  { patient: PatientModel };
   AddScreen: undefined;
   InfoScreen: { id: number };
 };
