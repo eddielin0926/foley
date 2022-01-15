@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { View ,TouchableOpacity} from "react-native";
 import { ThemeProvider, Text, Image } from "react-native-elements";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { StackParams } from "../../App";
@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "~/redux/store";
 import { Icon } from "react-native-elements/dist/icons/Icon";
 import { StyleSheet } from "react-native";
+import * as Speech from 'expo-speech';
 
 type Props = NativeStackScreenProps<StackParams, "InfoScreen">;
 
@@ -16,6 +17,16 @@ const InfoScreen = ({ route, navigation }: Props) => {
   console.log(route.params);
   const patients = useSelector((state: RootState) => state.hospital.patients);
   const patient = patients.length === 0 ? null : patients[route.params.id];
+  const speak = () => {
+    const textToSay = `已入院${patient?.day}天`;
+    const options = {
+      language: "zh-TW",
+      pitch: 1,
+      rate: 1
+    };
+    Speech.speak(textToSay, options);
+  };  
+
   return (
     <ThemeProvider theme={theme}>
       <View style={common.screen}>
@@ -59,6 +70,9 @@ const InfoScreen = ({ route, navigation }: Props) => {
                 <Icon type="entypo" color='#517fa4' name="eye" size={30} />
                 <Text h3 style={styles.profileText}>尿管狀態: {patient.foleyStatus}</Text>
               </View>
+              <TouchableOpacity onPress={speak} style={styles.button}>
+                  <Text style={styles.appButtonText}>Press Me</Text>
+              </TouchableOpacity>
             </>
           )}
         </View>
@@ -85,6 +99,19 @@ const styles=StyleSheet.create({
     marginLeft:10,
     marginBottom:10
   },
+  button:{
+    elevation: 8,
+    alignItems: "center",
+    backgroundColor: "#1e90ff",
+    borderRadius:50,
+    padding: 10
+  },
+  appButtonText: {
+    fontSize: 18,
+    color: "#fff",
+    fontWeight: "bold",
+    alignSelf: "center",
+  }
 });
 
 export default InfoScreen;
