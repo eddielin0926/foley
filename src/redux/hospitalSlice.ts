@@ -31,7 +31,7 @@ const initialState: HospitalState = {
     },
     {
       id: 2,
-      name: "昊哥",
+      name: "How哥",
       gender: "male",
       bed: "H168",
       case: "HOW-FUN",

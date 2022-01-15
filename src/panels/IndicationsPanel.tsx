@@ -58,6 +58,11 @@ const IndicationsPanel = ({ setStatus }: Props) => {
       detail:
         "無法使用其他方法(如：間歇性導尿)處理之神經性膀胱及尿滯留 (急性尿液滯留需使用膀胱超音波進行確認)。",
     },
+    {
+      key: "A-10",
+      brief: "無適應症",
+      detail: "無適應症",
+    },
   ];
 
   return (
