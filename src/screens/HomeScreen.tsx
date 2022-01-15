@@ -35,7 +35,7 @@ const HomeScreen = ({ navigation }: Props) => {
     <ThemeProvider theme={theme}>
       <View style={common.screen}>
         <View style={common.container}>
-          <Text h2>病患</Text>
+          <Text h2>住院病人</Text>
           <DropDownPicker
             modalTitle="Filter"
             open={filterOpen}
