@@ -1,0 +1,37 @@
+{
+  "patients": [
+    {
+      "id": 0,
+      "name": "小美",
+      "gender": "female",
+      "bed": "A380",
+      "case": "I-DONT-KNOW",
+      "age": 70,
+      "day": 5,
+      "foleyStatus": "removed",
+      "state": "1A"
+    },
+    {
+      "id": 1,
+      "name": "阿明",
+      "gender": "other",
+      "bed": "C8763",
+      "case": "STARBURST-STREAM",
+      "age": 60,
+      "day": 1,
+      "foleyStatus": "inserted",
+      "state": "1A"
+    },
+    {
+      "id": 2,
+      "name": "How哥",
+      "gender": "male",
+      "bed": "H168",
+      "case": "HOW-FUN",
+      "age": 32,
+      "day": 9,
+      "foleyStatus": "none",
+      "state": "1A"
+    }
+  ]
+}

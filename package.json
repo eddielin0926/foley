@@ -12,13 +12,15 @@
     "prettier": "prettier 'src/**/*.tsx' App.tsx",
     "lint": "eslint .",
     "changelog": "npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "json-server": "json-server --watch"
   },
   "dependencies": {
     "@expo/webpack-config": "^0.16.15",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
     "@reduxjs/toolkit": "^1.7.1",
+    "axios": "^0.24.0",
     "babel-plugin-root-import": "^6.6.0",
     "expo": "~43.0.2",
     "expo-speech": "~10.0.3",
