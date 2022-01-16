@@ -10,6 +10,7 @@ import EvaluatePanel from "~/panels/EvaluatePanel";
 import CarePanel from "~/panels/CarePanel";
 import { useDispatch } from "react-redux";
 import { add } from "~/redux/hospitalSlice";
+import { addPatient }  from "~/redux/actions/action";
 
 type Props = NativeStackScreenProps<StackParams, "ProcessScreen">;
 
@@ -28,10 +29,12 @@ const ProcessScreen = ({ navigation, route }: Props) => {
     } else if (status[0] === "B") {
       patient.foleyStatus = "none"
       dispatch(add(patient))
+      addPatient(patient)
       navigation.navigate("HomeScreen");
     } else if (status[0] === "C") {
       patient.foleyStatus = "inserted"
       dispatch(add(patient))
+      addPatient(patient)
       navigation.navigate("HomeScreen");
     }
   };
