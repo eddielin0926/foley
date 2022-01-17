@@ -38,7 +38,7 @@ const HomeScreen = ({ navigation }: Props) => {
   ]);
   const [showDelete, setShowDelete] = useState(false);
 
-  const fetchData = async () => {
+  const fetchData = async() => {
     const data = await getPatients();
     console.log(data);
   };

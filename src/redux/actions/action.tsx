@@ -2,15 +2,14 @@ import axios from "../../axios";
 import PatientModel from "~/type/PatientModel";
 import SetRequest from "~/type/PatientModel"
 
-export const getPatients = () =>{
-  return async() =>{
+export const getPatients =async () =>{
     try {
+      console.log('Get');
       let res = await axios.get("/patients");
-      console.log('?', res.data);
+      // console.log('?', res.data);
       return res.data;
     } catch (error) {
       return [];
-    }
   }
 };
 

@@ -18,7 +18,7 @@ const initialState: HospitalState = {
       foleyStatus: "removed",
       state: "1A",
       insertedDate: new Date("2022-01-10"),
-      updatedDate: "2022-01-16",
+      updatedDate: "2022-01-17",
     },
     {
       id: 1,
@@ -31,7 +31,7 @@ const initialState: HospitalState = {
       foleyStatus: "inserted",
       state: "1A",
       insertedDate: new Date("2022-01-10"),
-      updatedDate: "2022-01-16",
+      updatedDate: "2022-01-17",
     },
     {
       id: 2,
@@ -44,7 +44,7 @@ const initialState: HospitalState = {
       foleyStatus: "none",
       state: "1A",
       insertedDate: new Date("2022-01-10"),
-      updatedDate: "2022-01-16",
+      updatedDate: "2022-01-17",
     },
   ],
 };
