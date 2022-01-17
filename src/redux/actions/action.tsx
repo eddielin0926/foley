@@ -1,6 +1,6 @@
 import axios from "../../axios";
 import PatientModel from "~/type/PatientModel";
-
+import SetRequest from "~/type/PatientModel"
 
 export const getPatients = async () =>{
   return async() =>{
@@ -21,13 +21,11 @@ export const addPatient =
           age: patient.age,
           day: patient.day,
           foleyStatus: patient.foleyStatus,
-          state: patient.state || ""
+          state: patient.state || "1A"
         };
-        const pro = {...data};
         return new Promise<{ message: number }>((resolve, reject) => {
-          // console.log(patient);
           axios
-            .post("/patients", pro)
+            .post("/patients", data)
             .then((response) => {
               resolve(response.data);
             })
@@ -37,3 +35,35 @@ export const addPatient =
             });      
         });
     };
+
+export const updatePatients = 
+    (id:number, options:SetRequest) => {
+      const updateData = {
+        name: options.name,
+        gender: options.gender,
+        bed: options.bed,
+        case: options.case,
+        age: options.age,
+        day: options.day,
+        foleyStatus: options.foleyStatus,
+        state: options.state || "1A",
+        insertedDate:options.insertedDate
+      };
+      return new Promise<{ message: number }>((resolve, reject) => {
+        axios
+          .put(`/patients/${id}`, updateData)
+          .then((response) => {
+            resolve(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+            reject({ message: -1 });
+          });      
+      });
+    };
+
+export const deletePatient = async (id:number) => {
+    try {
+      await axios.delete(`/patients/${id}`);
+    } catch (error) {}
+}
