@@ -8,6 +8,7 @@ interface PatientModel {
   day: number;
   foleyStatus: "none" | "inserted" | "removed";
   state: string;
+  insertedDate: Date
 };
 
 export default PatientModel;
