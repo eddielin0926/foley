@@ -18,7 +18,7 @@ const InfoScreen = ({ route, navigation }: Props) => {
   const patients = useSelector((state: RootState) => state.hospital.patients);
   const patient = patients.length === 0 ? null : patients[route.params.id];
   const speak = () => {
-    const textToSay = `已入院${patient?.day}天`;
+    const textToSay = `尿管已放置${insertedDuration()}天`;
     const options = {
       language: "zh-TW",
       pitch: 1,
@@ -104,16 +104,19 @@ const InfoScreen = ({ route, navigation }: Props) => {
                 </Text>
               </View>
               {patient.foleyStatus === "inserted" && (
+                <>
                 <View style={common.row}>
                   <Icon type="entypo" color="#517fa4" name="eye" size={30} />
                   <Text h3 style={styles.profileText}>
                     尿管放置天數: {insertedDuration()}
                   </Text>
                 </View>
+                <View>
+                  <TouchableOpacity onPress={speak} style={styles.button}>
+                    <Text style={styles.appButtonText}>Press Me</Text>
+                  </TouchableOpacity>
+                </View></>
               )}
-              <TouchableOpacity onPress={speak} style={styles.button}>
-                <Text style={styles.appButtonText}>Press Me</Text>
-              </TouchableOpacity>
             </>
           )}
         </View>

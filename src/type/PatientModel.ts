@@ -8,7 +8,8 @@ interface PatientModel {
   day: number;
   foleyStatus: "none" | "inserted" | "removed";
   state: string;
-  insertedDate: Date
+  insertedDate: Date;
+  updatedDate: string;
 };
 
 export interface SetRequest {
@@ -22,6 +23,7 @@ export interface SetRequest {
   foleyStatus?: "none" | "inserted" | "removed";
   state?: string;
   insertedDate?: Date;
+  updatedDate?: string;
 }
 
 export default PatientModel;

@@ -7,9 +7,11 @@
       "bed": "A380",
       "case": "I-DONT-KNOW",
       "age": 70,
-      "day": 5,
+      "day": 6,
       "foleyStatus": "removed",
-      "state": "1A"
+      "state": "1A",
+      "insertedDate": "2022-01-17",
+      "updatedDate": "2022-01-17"
     },
     {
       "id": 1,
@@ -17,10 +19,12 @@
       "gender": "other",
       "bed": "C8763",
       "case": "STARBURST-STREAM",
-      "age": 60,
-      "day": 1,
+      "age": 16,
+      "day": 2,
       "foleyStatus": "inserted",
-      "state": "1A"
+      "state": "1A",
+      "insertedDate": "2022-01-17",
+      "updatedDate": "2022-01-17"
     },
     {
       "id": 2,
@@ -29,9 +33,11 @@
       "bed": "H168",
       "case": "HOW-FUN",
       "age": 32,
-      "day": 9,
+      "day": 10,
       "foleyStatus": "none",
-      "state": "1A"
+      "state": "1A",
+      "insertedDate": "2022-01-17",
+      "updatedDate": "2022-01-17"
     }
   ]
 }

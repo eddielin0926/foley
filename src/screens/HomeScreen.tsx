@@ -17,8 +17,9 @@ import common from "~/styles/common";
 import theme from "~/styles/theme";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "~/redux/store";
-import { deletePatient, getPatients } from "~/redux/actions/action";
+import { deletePatient, getPatients ,updatePatients } from "~/redux/actions/action";
 import { init } from "~/redux/hospitalSlice";
+import PatientModel from "~/type/PatientModel";
 
 type Props = NativeStackScreenProps<StackParams, "HomeScreen">;
 
@@ -37,15 +38,26 @@ const HomeScreen = ({ navigation }: Props) => {
   ]);
   const [showDelete, setShowDelete] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getPatients();
-      console.log(data);
-    };
-    fetchData();
-  }, []);
+  const fetchData = async () => {
+    const data = await getPatients();
+    console.log(data);
+  };
+  fetchData();
 
-  const deleteButton = (id: number) => {
+  useEffect(() => {
+    // Just run the first time
+    console.log('Update Date');
+    const today = new Date().toISOString().split('T')[0];
+    patients.forEach((p)=>{
+      if(p.updatedDate!== today){
+        p.day++;
+        p.updatedDate = today; 
+        updatePatients(p.id, {day:p.day+1, updatedDate: today} as PatientModel);
+      }
+    });
+  }, [])
+
+  const deleteButton = (id:number) =>{
     return Alert.alert(
       "Are your sure?",
       "Are you sure you want to remove this Patient?",
@@ -101,8 +113,8 @@ const HomeScreen = ({ navigation }: Props) => {
                   </ListItem.Content>
                   <StatusBadge foley={item.foleyStatus} />
 
-                  {showDelete ? (
-                    <Button
+                  {showDelete && (
+                    <Button 
                       icon={
                         <Icon
                           name="clear"
@@ -111,8 +123,9 @@ const HomeScreen = ({ navigation }: Props) => {
                         />
                       }
                       onPress={() => deleteButton(item.id)}
-                    ></Button>
-                  ) : null}
+                    >
+                    </Button> 
+                  )}
                 </ListItem>
               )}
             />
@@ -147,3 +160,7 @@ const HomeScreen = ({ navigation }: Props) => {
 };
 
 export default HomeScreen;
+function dispatch(arg0: { payload: PatientModel; type: string; }) {
+  throw new Error("Function not implemented.");
+}
+

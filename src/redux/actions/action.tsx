@@ -2,7 +2,7 @@ import axios from "../../axios";
 import PatientModel from "~/type/PatientModel";
 import SetRequest from "~/type/PatientModel"
 
-export const getPatients = async () =>{
+export const getPatients = () =>{
   return async() =>{
     try {
       let res = await axios.get("/patients");
@@ -40,21 +40,10 @@ export const addPatient =
     };
 
 export const updatePatients = 
-    (id:number, options:SetRequest) => {
-      const updateData = {
-        name: options.name,
-        gender: options.gender,
-        bed: options.bed,
-        case: options.case,
-        age: options.age,
-        day: options.day,
-        foleyStatus: options.foleyStatus,
-        state: options.state || "1A",
-        insertedDate:options.insertedDate
-      };
+    (id:number, options: SetRequest) => {
       return new Promise<{ message: number }>((resolve, reject) => {
         axios
-          .put(`/patients/${id}`, updateData)
+          .patch(`/patients/${id}`, options)
           .then((response) => {
             resolve(response.data);
           })

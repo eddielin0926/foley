@@ -21,6 +21,7 @@ const AddScreen = ({ navigation }: Props) => {
     foleyStatus: "none",
     state: "",
     insertedDate: new Date(),
+    updatedDate: new Date("2022-01-16").toISOString().split('T')[0]
   });
 
   return (
