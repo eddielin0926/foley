@@ -19,6 +19,7 @@ const TechniquePanel = ({ setStatus }: Props) => {
     false,
     false,
   ]);
+  const [selectAll, setSelectAll] = useState(false);
   const options: Array<{ key: string; brief: string; detail: string }> = [
     {
       key: "C-1",
@@ -79,6 +80,18 @@ const TechniquePanel = ({ setStatus }: Props) => {
   return (
     <>
       <Text h2>放置尿管的無菌技術</Text>
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <CheckBox
+          checked={selectAll}
+          onPress={() => {
+            if (!selectAll) {
+              setSelection(Array(10).fill(true));
+            }
+            setSelectAll(!selectAll);
+          }}
+        />
+        <Text>全選</Text>
+      </View>
       <FlatList
         data={options}
         renderItem={({ item, index }) => (
