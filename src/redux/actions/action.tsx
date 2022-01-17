@@ -6,8 +6,11 @@ export const getPatients = async () =>{
   return async() =>{
     try {
       let res = await axios.get("/patients");
-      console.log(res.data);
-    } catch (error) {}
+      console.log('?', res.data);
+      return res.data;
+    } catch (error) {
+      return [];
+    }
   }
 };
 

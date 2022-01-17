@@ -17,7 +17,7 @@ const initialState: HospitalState = {
       day: 5,
       foleyStatus: "removed",
       state: "1A",
-      insertedDate: new Date("2022-01-17"),
+      insertedDate: new Date("2022-01-10"),
     },
     {
       id: 1,
@@ -29,7 +29,7 @@ const initialState: HospitalState = {
       day: 1,
       foleyStatus: "inserted",
       state: "1A",
-      insertedDate: new Date("2022-01-17"),
+      insertedDate: new Date("2022-01-10"),
     },
     {
       id: 2,
@@ -41,7 +41,7 @@ const initialState: HospitalState = {
       day: 9,
       foleyStatus: "none",
       state: "1A",
-      insertedDate: new Date("2022-01-17"),
+      insertedDate: new Date("2022-01-10"),
     },
   ],
 };
@@ -50,6 +50,9 @@ export const hospitalSlice = createSlice({
   name: "hospital",
   initialState,
   reducers: {
+    init: (state, action: PayloadAction<Array<PatientModel>>) => {
+      state.patients = action.payload;
+    },
     add: (state, action: PayloadAction<PatientModel>) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
@@ -68,6 +71,6 @@ export const hospitalSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { add, update, remove } = hospitalSlice.actions;
+export const { init, add, update, remove } = hospitalSlice.actions;
 
 export default hospitalSlice.reducer;

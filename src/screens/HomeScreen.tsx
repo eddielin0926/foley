@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, FlatList, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import DropDownPicker from "react-native-dropdown-picker";
@@ -15,13 +15,15 @@ import { StackParams } from "../../App";
 import StatusBadge from "~/components/StatusBadge";
 import common from "~/styles/common";
 import theme from "~/styles/theme";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "~/redux/store";
-import { deletePatient } from "~/redux/actions/action";
+import { deletePatient, getPatients } from "~/redux/actions/action";
+import { init } from "~/redux/hospitalSlice";
 
 type Props = NativeStackScreenProps<StackParams, "HomeScreen">;
 
 const HomeScreen = ({ navigation }: Props) => {
+  const dispatch = useDispatch();
   const patients = useSelector((state: RootState) => state.hospital.patients);
 
   const [open, setOpen] = useState(false);
@@ -35,7 +37,15 @@ const HomeScreen = ({ navigation }: Props) => {
   ]);
   const [showDelete, setShowDelete] = useState(false);
 
-  const deleteButton = (id:number) =>{
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getPatients();
+      console.log(data);
+    };
+    fetchData();
+  }, []);
+
+  const deleteButton = (id: number) => {
     return Alert.alert(
       "Are your sure?",
       "Are you sure you want to remove this Patient?",
@@ -47,10 +57,10 @@ const HomeScreen = ({ navigation }: Props) => {
             deletePatient(id);
           },
         },
-        {text: "No",},
+        { text: "No" },
       ]
     );
-  }
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -74,7 +84,9 @@ const HomeScreen = ({ navigation }: Props) => {
               renderItem={({ item }) => (
                 <ListItem
                   bottomDivider
-                  onPress={() => navigation.navigate("InfoScreen", {id: item.id})}
+                  onPress={() =>
+                    navigation.navigate("InfoScreen", { id: item.id })
+                  }
                   containerStyle={{ borderRadius: 15, overflow: "hidden" }}
                 >
                   <Avatar
@@ -89,20 +101,18 @@ const HomeScreen = ({ navigation }: Props) => {
                   </ListItem.Content>
                   <StatusBadge foley={item.foleyStatus} />
 
-                  {showDelete?
-                    <Button 
+                  {showDelete ? (
+                    <Button
                       icon={
                         <Icon
-                          name="clear" 
-                          tvParallaxProperties={undefined} 
-                          size = {20}                   
+                          name="clear"
+                          tvParallaxProperties={undefined}
+                          size={20}
                         />
                       }
                       onPress={() => deleteButton(item.id)}
-                    >
-                    </Button> 
-                  :null }
-
+                    ></Button>
+                  ) : null}
                 </ListItem>
               )}
             />
@@ -125,7 +135,9 @@ const HomeScreen = ({ navigation }: Props) => {
             <SpeedDial.Action
               icon={{ name: "delete", color: "#fff" }}
               title="Delete"
-              onPress={() => {setShowDelete(!showDelete)}}
+              onPress={() => {
+                setShowDelete(!showDelete);
+              }}
             />
           </SpeedDial>
         </View>
