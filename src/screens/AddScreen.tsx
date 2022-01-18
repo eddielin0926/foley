@@ -20,7 +20,7 @@ const AddScreen = ({ navigation }: Props) => {
     day: 0,
     foleyStatus: "none",
     state: "",
-    insertedDate: new Date(),
+    insertedDate: new Date().toISOString(),
     updatedDate: new Date().toISOString().split("T")[0],
   });
 

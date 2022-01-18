@@ -30,11 +30,18 @@ const InfoScreen = ({ route, navigation }: Props) => {
     const today = new Date();
     if (patient?.insertedDate)
       return Math.floor(
-        (today.getTime() - patient?.insertedDate.getTime()) /
+        (today.getTime() - new Date(patient?.insertedDate).getTime()) /
           (1000 * 3600 * 24) +
           1
       );
   };
+  const status = (str:string) => {
+    const tmp = [{ label: "無放置過尿管", value: "none" },
+    { label: "尿管放置中", value: "inserted" },
+    { label: "已移除尿管", value: "removed" },
+    { label: "全部", value: "all" },]
+    return tmp.find((e) => e.value == str)?.label;
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -100,7 +107,7 @@ const InfoScreen = ({ route, navigation }: Props) => {
               <View style={common.row}>
                 <Icon type="entypo" color="#517fa4" name="eye" size={30} />
                 <Text h3 style={styles.profileText}>
-                  尿管狀態: {patient.foleyStatus}
+                  尿管狀態: {status(patient.foleyStatus)}
                 </Text>
               </View>
               {patient.foleyStatus === "inserted" && (

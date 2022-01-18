@@ -18,7 +18,7 @@ import theme from "~/styles/theme";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "~/redux/store";
 import { deletePatient, getPatients ,updatePatients } from "~/redux/actions/action";
-import { init } from "~/redux/hospitalSlice";
+import { init, remove } from "~/redux/hospitalSlice";
 import PatientModel from "~/type/PatientModel";
 
 type Props = NativeStackScreenProps<StackParams, "HomeScreen">;
@@ -67,6 +67,7 @@ const HomeScreen = ({ navigation }: Props) => {
           text: "Yes",
           onPress: () => {
             deletePatient(id);
+            dispatch(remove(patients[id]));
           },
         },
         { text: "No" },
